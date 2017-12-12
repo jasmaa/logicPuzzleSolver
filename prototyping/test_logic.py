@@ -1,12 +1,6 @@
 import pprint as pp
 
 """
-3 4
-GERTIE HERBERT MIRIAM WALLACE
-AL BE PE SL
-1928 1929 1932 1935
-"""
-
 num_features = 3
 num_elements = 4
 
@@ -35,6 +29,24 @@ constraints = [
         ['WALLACE', 'PE'],
         ['WALLACE', 'SL'],
     ]
+"""
+
+# === read file ===
+inp = []
+with open("puzzle2.txt") as f:
+    for i in f.read().split("\n"):
+        inp.append(i.split(" "))
+    
+num_features = int(inp[0][0])
+num_elements = int(inp[0][1])
+
+features = []
+for i in range(num_features):
+    features.append(inp[i+1])
+
+constraints = []
+for i in range(len(inp) - num_features - 1):
+    constraints.append(inp[i + num_features + 1])
 
 constraint_graveyard = []
 
