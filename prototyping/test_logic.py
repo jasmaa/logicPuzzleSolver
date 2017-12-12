@@ -33,7 +33,7 @@ constraints = [
 
 # === read file ===
 inp = []
-with open("puzzle2.txt") as f:
+with open("puzzle1.txt") as f:
     for i in f.read().split("\n"):
         inp.append(i.split(" "))
     
@@ -115,8 +115,11 @@ while len(constraints) > 0:
                         constraints.append(new_c)
                         constraint_graveyard.append(new_c)
 
-    # TODO implement links
-                        
+    # TODO implement links?
+    # ???
+    # ???
+    # ???
+     
     #pp.pprint(possible)
     constraint_graveyard.append(constraints.pop(0))
 
