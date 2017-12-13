@@ -33,7 +33,7 @@ constraints = [
 
 # === read file ===
 inp = []
-with open("../puzzles/puzzle03.txt") as f:
+with open("../puzzles/puzzle01.txt") as f:
     for i in f.read().split("\n"):
         inp.append(i.split(" "))
     
@@ -113,34 +113,36 @@ while len(constraints) > 0:
                         p[f] -= p[feature]
 
     """
-    Find a definite association
-    go thru possible with both elements
-        if elements is a key, find intersection of lists
-        if elements is in the bucket, disassociate element with keys that don't contain element
+    Find a definite association a->b
+    search for bucket a
+    search for bucket b
+    intersect sets for a and b
+    if intersection is nono-zero, reassign as sets for both
     """
 
-    """
+    
     # TODO implement links?
     for p in possible:
         for feature in p:
             # Detect definite
             if len(p[feature]) == 1:
-                element = p[feature][0]
-                print(element)
+                element = list(p[feature])[0]
+                
+                # do a
+                for p1 in possible:
+                    if feature in p1.keys():
+                        p1[feature]
 
-                # go thru with 1st part
-                for i in possible:
-                    # element is key
-                    if feature in i.keys():
-                        # disassociate
-                        for f in features:
-                            constraints.append([element, ])
+                        # do b
+                        for p2 in possible:
+                                if element in p2.keys():
+                                    intersect = p1[feature].intersection(p2[element])
+                                    if len(intersect) > 0:
+                                        p1[feature] = intersect
+                                        p2[element] = intersect
 
-                    
-                    # element is in bucket
-                    for j in i:
-                        if feature in i[j]:
-                    """   
+    
+                     
      
     #pp.pprint(possible)
     constraint_graveyard.append(constraints.pop(0))
