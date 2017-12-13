@@ -33,7 +33,7 @@ constraints = [
 
 # === read file ===
 inp = []
-with open("puzzle1.txt") as f:
+with open("../puzzles/puzzle03.txt") as f:
     for i in f.read().split("\n"):
         inp.append(i.split(" "))
     
@@ -69,11 +69,12 @@ go until 1 possibility for all
 
 # build list of possibilities
 for i in range(num_features):
-    for j in range(i+1, num_features):
-        assoc = {}
-        for k in range(num_elements):
-            assoc[features[i][k]] = list(features[j])
-        possible.append(assoc)
+    for j in range(num_features):
+        if i != j:
+            assoc = {}
+            for k in range(num_elements):
+                assoc[features[i][k]] = set(features[j])
+            possible.append(assoc)
 
 #pp.pprint(possible)
 
@@ -97,28 +98,49 @@ while len(constraints) > 0:
     for p in possible:
         # disconnect c1
         if c[0] in p and c[1] in p[c[0]]:
-            p[c[0]].pop(p[c[0]].index(c[1]))
+            p[c[0]].remove(c[1])
         # diconnect c0
         elif c[1] in p and c[0] in p[c[1]]:
-            p[c[1]].pop(p[c[1]].index(c[0]))
+            p[c[1]].remove(c[0])
+            
 
     # check for POE
     for p in possible:
         for feature in p:
             if len(p[feature]) == 1:
-                poe_list = list(p.keys())
-                poe_list.pop(poe_list.index(feature))
-                
-                for f in poe_list:
-                    new_c = [f, p[feature][0]]
-                    if new_c not in constraint_graveyard:
-                        constraints.append(new_c)
-                        constraint_graveyard.append(new_c)
+                for f in p:
+                    if f != feature:
+                        p[f] -= p[feature]
 
+    """
+    Find a definite association
+    go thru possible with both elements
+        if elements is a key, find intersection of lists
+        if elements is in the bucket, disassociate element with keys that don't contain element
+    """
+
+    """
     # TODO implement links?
-    # ???
-    # ???
-    # ???
+    for p in possible:
+        for feature in p:
+            # Detect definite
+            if len(p[feature]) == 1:
+                element = p[feature][0]
+                print(element)
+
+                # go thru with 1st part
+                for i in possible:
+                    # element is key
+                    if feature in i.keys():
+                        # disassociate
+                        for f in features:
+                            constraints.append([element, ])
+
+                    
+                    # element is in bucket
+                    for j in i:
+                        if feature in i[j]:
+                    """   
      
     #pp.pprint(possible)
     constraint_graveyard.append(constraints.pop(0))

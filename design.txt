@@ -1,0 +1,2 @@
+-generate all permutations
+-load and evaluate constraints, if all constraints met then it works
