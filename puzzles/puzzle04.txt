@@ -23,4 +23,3 @@ GREGORY WONG
 IRIS SHRUB
 IRIS SUNSET
 HANNAH SUNSET
-! this line makes the program work

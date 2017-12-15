@@ -48,8 +48,6 @@ constraints = []
 for i in range(len(inp) - num_features - 1):
     constraints.append(inp[i + num_features + 1])
 
-constraint_graveyard = []
-
 """
 
 PERSON, PLACE, YEAR
@@ -141,12 +139,15 @@ while len(constraints) > 0:
                                         p1[feature] = intersect
                                         p2[element] = intersect
 
-                
+    constraints.pop(0)
 
-    
-                     
-     
-    #pp.pprint(possible)
-    constraint_graveyard.append(constraints.pop(0))
+    # checks if done
+    counter = 0
+    for p in possible:
+        for f in p:
+            counter += len(p[f])
+    # bs code to make stuff work
+    if counter != num_features*num_elements*2:
+        constraints.append(["!", "this line makes the program work"])
 
 pp.pprint(possible)
