@@ -116,9 +116,7 @@ while len(constraints) > 0:
     # intersect sets for a and b
     # if intersection is nono-zero, reassign as sets for both
     
-
-    """
-    # TODO implement links?
+    # bucket syncing
     for p in possible:
         for feature in p:
             # Detect definite
@@ -137,10 +135,9 @@ while len(constraints) > 0:
                                     if len(intersect) > 0:
                                         p1[feature] = intersect
                                         p2[element] = intersect
-    """
+
     constraints.pop(0)
 
-    """
     # checks if done
     counter = 0
     for p in possible:
@@ -149,7 +146,6 @@ while len(constraints) > 0:
     # bs code to make stuff work
     if counter != num_features*num_elements*2:
         constraints.append(["!", "this line makes the program work"])
-    """
 
 
 pp.pprint(possible)

@@ -107,12 +107,54 @@ Method:
 			)
 			
 			
+			; bucket syncing between feature and element
+			; CURRENTLY BROKEN
+			(dolist (p possible)
+				(dolist (feature (get-keys p))
+					; detect a definite association
+					(if (equalp 1 (length (gethash feature p)))
+						(let ((element (car (gethash feature p))))
+							; a
+							(dolist (p1 possible)
+								(if (gethash feature p1)
+									; b
+									(dolist (p2 possible)
+										(if (gethash element p2)
+											(let ((intersect nil))
+												(setq intersect (intersection (gethash feature p1) (gethash element p2)))
+												(when (> (length intersect) 0)
+													(setf (gethash feature p1) intersect)
+													(setf (gethash element p2) intersect)
+												)
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				)
+			)
 
+			; Removes applied constraint
 			(setq constraints (cdr constraints))
+
+			; Checks if done
+			(let ((counter 0))
+				(dolist (p possible)
+					(dolist (f (get-keys p))
+						(setq counter (+ counter (length (gethash f p))))
+					)
+				)
+				; Feed in dummy commands until solved
+				(if (not(equalp counter (* num-features num-elements 2)))
+					(setq constraints (append constraints (list '(!DUMMY THIS-LINE-MAKES-THE-PROGRAM-WORK))))
+				)
+			)
 		)
 
 		
 		(print-h possible)
-		(print "-- algorithm ended --")
+		(print "--- END ---")
 		nil
 )
