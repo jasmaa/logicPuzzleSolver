@@ -1,4 +1,4 @@
-
+#|
 (setq table (make-hash-table))
 
 (setq test-list '(a b c))
@@ -16,3 +16,19 @@
 )
 
 (intersection list-1 list-2)
+|#
+
+(setq table (make-hash-table))
+
+(setq test-list '(a b c))
+
+(setf (gethash 'one table) (copy-list test-list))
+(setf (gethash 'two table) 2)
+
+(with-hash-table-iterator (my-iterator table)
+    (loop
+      (multiple-value-bind (entry-p key value)
+          (my-iterator)
+        (if entry-p
+            (print value)
+            (return)))))

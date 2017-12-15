@@ -22,6 +22,13 @@ Method:
 	)
 )
 
+(defun get-keys(h)
+	(let ((keys nil))
+		(maphash #'(lambda (k v) (setq keys (cons k keys))) h)
+		keys
+	)
+)
+
 (let 	(
 			(num-features 3)
 			(num-elements 4)
@@ -85,6 +92,19 @@ Method:
 					)
 				)
 			)
+
+			; check for POE
+			(dolist (p possible)
+				(dolist (feature (get-keys p))
+					(if (equalp 1 (length (gethash feature p)))
+						(dolist (f (get-keys p))
+							(when (not(equalp f feature))
+								(setf (gethash f p) (remove (car (gethash feature p)) (gethash f p)))
+							)
+						)
+					)
+				)
+			)
 			
 			
 
@@ -94,4 +114,5 @@ Method:
 		
 		(print-h possible)
 		(print "-- algorithm ended --")
+		nil
 )

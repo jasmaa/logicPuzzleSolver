@@ -12,7 +12,7 @@ that the puzzle has no comparisions.
   - ~~Python prototype~~
   - ~~Find sample puzzles~~
   - Lisp implementation
-    - Disassociations
+    - ~~Disassociations~~
 	- POE
 	- Bucket syncing
 	- File I/O

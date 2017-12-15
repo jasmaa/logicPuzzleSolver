@@ -100,7 +100,7 @@ while len(constraints) > 0:
         elif c[1] in p and c[0] in p[c[1]]:
             p[c[1]].remove(c[0])
             
-    """
+    
     # check for POE
     for p in possible:
         for feature in p:
@@ -117,7 +117,7 @@ while len(constraints) > 0:
     # if intersection is nono-zero, reassign as sets for both
     
 
-    
+    """
     # TODO implement links?
     for p in possible:
         for feature in p:
