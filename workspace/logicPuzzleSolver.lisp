@@ -39,7 +39,7 @@ Method:
 			)
 
 			; Read in files
-			(with-open-file (stream "C:/Users/Jason Maa/Documents/12th Grade/ai/logicSolver/puzzles/puzzle05.txt")
+			(with-open-file (stream "C:/Users/Jason Maa/Documents/12th Grade/ai/logicSolver/puzzles/puzzle07.txt")
 				(setq num-features (read stream))
 				(setq num-elements (read stream))
 
@@ -150,7 +150,7 @@ Method:
 						)
 					)
 					; Feed in dummy commands until solved
-					(if (not(equalp counter (* num-features num-elements 2)))
+					(if (not(equalp counter (* num-features (1- num-features) num-elements)))
 						(setq constraints (append constraints (list '(!DUMMY THIS-LINE-MAKES-THE-PROGRAM-WORK))))
 					)
 				)

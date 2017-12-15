@@ -23,4 +23,5 @@ that the puzzle has no comparisions.
 	- ~~POE~~
 	- ~~Bucket syncing~~
 	- ~~File I/O~~
+	- Make nice output
 	- Testing

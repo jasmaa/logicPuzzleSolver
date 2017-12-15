@@ -33,7 +33,7 @@ constraints = [
 
 # === read file ===
 inp = []
-with open("../puzzles/puzzle05.txt") as f:
+with open("../puzzles/puzzle07.txt") as f:
     for i in f.read().split("\n"):
         inp.append(i.split(" "))
     
@@ -137,14 +137,17 @@ while len(constraints) > 0:
                                         p2[element] = intersect
 
     constraints.pop(0)
-
+    """
+    pp.pprint(possible)
+    print()
+    """
     # checks if done
     counter = 0
     for p in possible:
         for f in p:
             counter += len(p[f])
     # bs code to make stuff work
-    if counter != num_features*num_elements*2:
+    if counter != num_features*(num_features-1)*num_elements:
         constraints.append(["!", "this line makes the program work"])
 
 
