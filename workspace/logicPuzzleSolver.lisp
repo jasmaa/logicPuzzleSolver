@@ -67,8 +67,12 @@ Method:
 			(if (<= (length constraints) 0) (return))
 			(setq c (car constraints))
 			
-			; insert alg here
-			(print c)
+			; loop for disassociations
+			(dolist (p possible)
+				(if (and (member (car c) p) (member (nth 1 c) (gethash (car c) p)))
+					(remove (nth 1 c) (gethash (car c) p))
+				)
+			)
 			
 			(setq constraint-graveyard (cons (car constraints) constraint-graveyard))
 			(setq constraints (cdr constraints))

@@ -11,4 +11,8 @@
 (setq list-1 '(a b c))
 (setq list-2 '(a c))
 
+(dolist (i list-1)
+	(print i)
+)
+
 (intersection list-1 list-2)

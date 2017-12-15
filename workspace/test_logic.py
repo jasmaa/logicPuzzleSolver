@@ -141,8 +141,6 @@ while len(constraints) > 0:
                                         p1[feature] = intersect
                                         p2[element] = intersect
 
-                
-
     
                      
      
