@@ -33,7 +33,7 @@ constraints = [
 
 # === read file ===
 inp = []
-with open("../puzzles/puzzle07.txt") as f:
+with open("../puzzles/puzzle08.txt") as f:
     for i in f.read().split("\n"):
         inp.append(i.split(" "))
     

@@ -39,7 +39,7 @@ Method:
 			)
 
 			; Read in files
-			(with-open-file (stream "C:/Users/Jason Maa/Documents/12th Grade/ai/logicSolver/puzzles/puzzle07.txt")
+			(with-open-file (stream "C:/Users/Jason Maa/Documents/12th Grade/ai/logicSolver/puzzles/puzzle08.txt")
 				(setq num-features (read stream))
 				(setq num-elements (read stream))
 
@@ -55,12 +55,14 @@ Method:
 
 				; read constraints
 				(loop
+					(let ((c0 nil) (c1 nil))
 
 						(setq c0 (read stream nil nil))
 						(setq c1 (read stream nil nil))
 						(if (null c0) (return))
 						
 						(setq constraints (cons (list c0 c1) constraints))
+					)
 				)
 			)
 
@@ -111,7 +113,6 @@ Method:
 				
 				
 				; bucket syncing between feature and element
-				; CURRENTLY BROKEN
 				(dolist (p possible)
 					(dolist (feature (get-keys p))
 						; detect a definite association
@@ -156,6 +157,7 @@ Method:
 				)
 			)
 
+			; Add better way to print out results
 			(print "--- START ---")
 			(print-h possible)
 			(print "--- END ---")
