@@ -22,5 +22,5 @@ that the puzzle has no comparisions.
     - ~~Disassociations~~
 	- ~~POE~~
 	- ~~Bucket syncing~~
-	- File I/O
+	- ~~File I/O~~
 	- Testing
