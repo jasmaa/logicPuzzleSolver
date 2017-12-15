@@ -13,12 +13,20 @@ Method:
 
 |#
 
+(defun print-h(p-set)
+	(print "--- START ---")
+	(print "---")
+	(dolist (p p-set)
+		(maphash #'(lambda (k v) (print (list k v))) p)
+		(print "---")
+	)
+)
+
 (let 	(
 			(num-features 3)
 			(num-elements 4)
 			(features nil)
 			(constraints nil)
-			(constraint-graveyard nil)
 			(possible nil)
 		)
 
@@ -69,16 +77,21 @@ Method:
 			
 			; loop for disassociations
 			(dolist (p possible)
-				(if (and (member (car c) p) (member (nth 1 c) (gethash (car c) p)))
-					(remove (nth 1 c) (gethash (car c) p))
+				(if (and (gethash (car c) p) (member (nth 1 c) (gethash (car c) p)))
+					(setf (gethash (car c) p) (remove (nth 1 c) (gethash (car c) p)))
+					
+					(if (and (gethash (nth 1 c) p) (member (car c) (gethash (nth 1 c) p)))
+						(setf (gethash (nth 1 c) p) (remove (car c) (gethash (nth 1 c) p)))
+					)
 				)
 			)
 			
-			(setq constraint-graveyard (cons (car constraints) constraint-graveyard))
+			
+
 			(setq constraints (cdr constraints))
 		)
-		
-		;(print possible)
-		
 
+		
+		(print-h possible)
+		(print "-- algorithm ended --")
 )

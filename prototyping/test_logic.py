@@ -33,7 +33,7 @@ constraints = [
 
 # === read file ===
 inp = []
-with open("../puzzles/puzzle04.txt") as f:
+with open("../puzzles/puzzle01.txt") as f:
     for i in f.read().split("\n"):
         inp.append(i.split(" "))
     
@@ -76,16 +76,15 @@ for i in range(num_features):
 
 #pp.pprint(possible)
 
-"""
-CONSTRAINTS
 
--disassociations (harry does not own the broom)
--POE (harry owns the broom so no one else can own the broom)
--links (harry is definitely associated with broom,
-        broom is not associated with 42 or 39,
-        therefore, harry is not associated with 42 or 39)
+# CONSTRAINTS
+# 
+# -disassociations (harry does not own the broom)
+# -POE (harry owns the broom so no one else can own the broom)
+# -links (harry is definitely associated with broom,
+#         broom is not associated with 42 or 39,
+#         therefore, harry is not associated with 42 or 39)
 
-"""
 
 # go until no constraints left to apply
 while len(constraints) > 0:
@@ -101,7 +100,7 @@ while len(constraints) > 0:
         elif c[1] in p and c[0] in p[c[1]]:
             p[c[1]].remove(c[0])
             
-
+    """
     # check for POE
     for p in possible:
         for feature in p:
@@ -110,13 +109,13 @@ while len(constraints) > 0:
                     if f != feature:
                         p[f] -= p[feature]
 
-    """
-    Find a definite association a->b
-    search for bucket a
-    search for bucket b
-    intersect sets for a and b
-    if intersection is nono-zero, reassign as sets for both
-    """
+    
+    # Find a definite association a->b
+    # search for bucket a
+    # search for bucket b
+    # intersect sets for a and b
+    # if intersection is nono-zero, reassign as sets for both
+    
 
     
     # TODO implement links?
@@ -138,9 +137,10 @@ while len(constraints) > 0:
                                     if len(intersect) > 0:
                                         p1[feature] = intersect
                                         p2[element] = intersect
-
+    """
     constraints.pop(0)
 
+    """
     # checks if done
     counter = 0
     for p in possible:
@@ -149,5 +149,7 @@ while len(constraints) > 0:
     # bs code to make stuff work
     if counter != num_features*num_elements*2:
         constraints.append(["!", "this line makes the program work"])
+    """
+
 
 pp.pprint(possible)

@@ -1,4 +1,4 @@
-#|
+
 (setq table (make-hash-table))
 
 (setq test-list '(a b c))
@@ -7,7 +7,7 @@
 (setf (gethash 'two table) 2)
 
 (cons table test-list)
-|#
+
 (setq list-1 '(a b c))
 (setq list-2 '(a c))
 
