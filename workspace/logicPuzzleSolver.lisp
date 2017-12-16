@@ -20,6 +20,21 @@ Method:
 	)
 )
 
+; prints results nicely
+(defun print-res(p-set features)
+	(dolist (f (car features))
+		(let ((f-list nil))
+			(setq f-list (cons f f-list))
+			(dolist (bucket p-set)
+				(if (not(null(gethash f bucket))) 
+					(setq f-list (append f-list (gethash f bucket)))
+				)
+			)
+			(print f-list)
+		)
+	)
+)
+
 ; gets keys in a hashset
 (defun get-keys(h)
 	(let ((keys nil))
@@ -39,7 +54,7 @@ Method:
 			)
 
 			; Read in files
-			(with-open-file (stream "C:/Users/Jason Maa/Documents/12th Grade/ai/logicSolver/puzzles/puzzle08.txt")
+			(with-open-file (stream "<insert puzzle path here>")
 				(setq num-features (read stream))
 				(setq num-elements (read stream))
 
@@ -157,10 +172,9 @@ Method:
 				)
 			)
 
-			; Add better way to print out results
-			(print "--- START ---")
-			(print-h possible)
-			(print "--- END ---")
+			; Prints results
+			(print-res possible features)
+
 			nil
 	)
 )
