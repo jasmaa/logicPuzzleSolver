@@ -113,7 +113,7 @@ Method:
 					)
 				)
 
-				; check for POE
+				; check for process of elimination
 				(dolist (p possible)
 					(dolist (feature (get-keys p))
 						(if (equalp 1 (length (gethash feature p)))
